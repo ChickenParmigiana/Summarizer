@@ -6085,9 +6085,13 @@ module.exports = {
         // Delete provider entry for OpenAI
         const providerId = settings.providerId;
         const provider = settings.providers.find(_provider => _provider.id === providerId);
-        if (provider) {
-            settings[provider].apiKey = settings.apiKey;
-        }
+       if (provider && settings.apiKey) {
+    // Ensure settings[provider] is initialized
+    settings[provider] = settings[provider] || {};  // Initialize if it's undefined
+    settings[provider].apiKey = settings.apiKey;
+} else {
+    console.error("Provider or API key not found. Cannot set API key.");
+}
         return settings;
     },
 };
