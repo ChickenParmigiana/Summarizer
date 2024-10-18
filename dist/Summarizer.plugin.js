@@ -6084,7 +6084,7 @@ module.exports = {
     '0.3.5': (settings, defaultSettings) => {
         // Delete provider entry for OpenAI
         const providerId = settings.providerId;
-        const provider = settings.providers.find((_provider) => provider.id === providerId);
+        const provider = settings.providers.find(_provider => _provider.id === providerId);
         if (provider) {
             settings[provider].apiKey = settings.apiKey;
         }
